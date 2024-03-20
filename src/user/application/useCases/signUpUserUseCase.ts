@@ -1,5 +1,5 @@
 import {UserRepository} from "../../domain/repository/userRepository";
-import {Credentials} from "../../domain/credentials";
+import {Credentials} from "../../domain/entity/credentials";
 
 export class SignUpUserUseCase{
     constructor(readonly repository:UserRepository) {

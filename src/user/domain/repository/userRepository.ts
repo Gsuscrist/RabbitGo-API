@@ -1,5 +1,5 @@
-import {User} from "../user";
-import {Credentials} from "../credentials";
+import {User} from "../entity/user";
+import {Credentials} from "../entity/credentials";
 
 export interface UserRepository{
 
