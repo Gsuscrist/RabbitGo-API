@@ -9,7 +9,7 @@ export class GetUserUseCase{
         uuid:string
     ):Promise<User|any>{
         try {
-            return await this.repository.getById(uuid)
+            return await this.repository.findById(uuid)
         }catch (e) {
             console.log(e)
             return null
