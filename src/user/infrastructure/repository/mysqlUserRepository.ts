@@ -2,6 +2,7 @@ import {UserRepository} from "../../domain/repository/userRepository";
 import {Credentials} from "../../domain/entity/credentials";
 import {query} from "../../../database/mysql"
 import {User} from "../../domain/entity/user";
+import {EncryptService} from "../../domain/service/encryptService";
 
 export class MysqlUserRepository implements UserRepository{
     async generateUuid(name: string):Promise<string|any>{
@@ -66,6 +67,25 @@ export class MysqlUserRepository implements UserRepository{
             const credentials=new Credentials(user.email,user.password)
 
             return new User(uuid, user.name, user.lastname, credentials,user.role ,user.deleted_at)
+        }catch (e) {
+            console.log(e)
+            return null
+        }
+    }
+
+    async login(credentials: Credentials, encryptService: EncryptService): Promise<any> {
+        try {
+            const sql = "SELECT * FROM users WHERE email= ? AND deleted_at IS NULL"
+            const params:any[]=[credentials.email]
+            const [result]:any = await query(sql,params)
+
+            if (await encryptService.compare(credentials.password, result[0].password)){
+
+                const user = result[0]
+                const credentials=new Credentials(user.email,user.password)
+
+                return new User(user.uuid, user.name, user.lastname, credentials,user.role, user.deleted_at)
+            }
         }catch (e) {
             console.log(e)
             return null
