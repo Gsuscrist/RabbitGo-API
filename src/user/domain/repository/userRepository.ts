@@ -6,6 +6,7 @@ export interface UserRepository{
     generateUuid(name:string):Promise<string|any>
     delete(uuid:string):Promise<void>
     update(uuid:string, user:User):Promise<User|any>
+    findById(uuid:string):Promise<User | any>
     signUp(
         uuid:string,
         name:string,
@@ -14,5 +15,5 @@ export interface UserRepository{
         role: "admin" | "user"
     ):Promise<User|any>
     login(credentials:Credentials,encryptService:EncryptService):Promise<User|any>
-
+    delete(uuid:string):Promise<void>
 }
