@@ -6,6 +6,8 @@ import {SignUpUserController} from "./controllers/signUpUserController";
 import {LoginUserUseCase} from "../application/useCases/loginUserUseCase";
 import {LoginUserController} from "./controllers/loginUserController";
 import {Jwt} from "../application/jwt/jwt";
+import { GetUserUseCase } from "user/application/useCases/getUserUseCase";
+import { GetUserController } from "./controllers/getUserController";
 
 
 export const database = new MysqlUserRepository()
@@ -19,3 +21,7 @@ export const  signUpUserController = new SignUpUserController(signUpUserUseCase,
 
 export const logInUserUseCase = new LoginUserUseCase(database)
 export const logInUserController = new LoginUserController(logInUserUseCase,encryptService,jwt)
+
+
+export const getUserUseCase = new GetUserUseCase(database)
+export const getUserController = new GetUserController(getUserUseCase)
