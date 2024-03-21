@@ -92,4 +92,15 @@ export class MysqlUserRepository implements UserRepository{
         }
     }
 
+    async delete(uuid: string): Promise<void> {
+        try{
+            const date = new Date()
+            const sql = "UPDATE users SET deleted_at = ? WHERE uuid = ?";
+            const params :any[] = [date,uuid]
+            const [result]:  any = await query(sql,params)
+        }catch (e){
+            console.log(e)
+        }
+    }
+
 }
