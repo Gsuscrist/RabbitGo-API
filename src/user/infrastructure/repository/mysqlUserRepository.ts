@@ -103,4 +103,21 @@ export class MysqlUserRepository implements UserRepository{
         }
     }
 
+    async update(uuid:string, user:User): Promise<any>{
+        try{
+            const sql = "UPDATE users SET name = ?, lastname = ?, email = ?, password = ? WHERE uuid = ?"
+            const params:any[] = [
+                user.name, 
+                user.lastname, 
+                user.credentials.email,
+                user.credentials.password, 
+                uuid
+            ];
+            await query(sql,params);
+            return user;
+        }catch (e){
+            console.log(e);
+            return null;
+        }
+    }
 }

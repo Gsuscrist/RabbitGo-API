@@ -10,6 +10,8 @@ import { GetUserUseCase } from "user/application/useCases/getUserUseCase";
 import { GetUserController } from "./controllers/getUserController";
 import { DeleteUserUseCase } from "user/application/useCases/deleteUserUseCase";
 import { DeleteUserController } from "./controllers/deleteUserControllers";
+import { UpdateUserUseCase } from "user/application/useCases/updateUserUseCase";
+import { UpdateUserController } from "./controllers/updateUserControllers";
 
 
 
@@ -31,4 +33,8 @@ export const getUserController = new GetUserController(getUserUseCase)
 
 export const deleteUserUseCase = new DeleteUserUseCase(database)
 export const deleteUserController = new DeleteUserController(deleteUserUseCase)
+
+
+export const updateUserUseCase = new UpdateUserUseCase(database)
+export const updateUserController = new UpdateUserController(updateUserUseCase,encryptService)
 
