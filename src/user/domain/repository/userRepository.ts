@@ -4,6 +4,7 @@ import {EncryptService} from "../service/encryptService";
 
 export interface UserRepository{
     generateUuid(name:string):Promise<string|any>
+    delete(uuid:string):Promise<void>
     signUp(
         uuid:string,
         name:string,
