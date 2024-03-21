@@ -6,8 +6,11 @@ import {SignUpUserController} from "./controllers/signUpUserController";
 import {LoginUserUseCase} from "../application/useCases/loginUserUseCase";
 import {LoginUserController} from "./controllers/loginUserController";
 import {Jwt} from "../application/jwt/jwt";
+import { GetUserUseCase } from "user/application/useCases/getUserUseCase";
+import { GetUserController } from "./controllers/getUserController";
 import { DeleteUserUseCase } from "user/application/useCases/deleteUserUseCase";
 import { DeleteUserController } from "./controllers/deleteUserControllers";
+
 
 
 export const database = new MysqlUserRepository()
@@ -22,5 +25,10 @@ export const  signUpUserController = new SignUpUserController(signUpUserUseCase,
 export const logInUserUseCase = new LoginUserUseCase(database)
 export const logInUserController = new LoginUserController(logInUserUseCase,encryptService,jwt)
 
+
+export const getUserUseCase = new GetUserUseCase(database)
+export const getUserController = new GetUserController(getUserUseCase)
+
 export const deleteUserUseCase = new DeleteUserUseCase(database)
 export const deleteUserController = new DeleteUserController(deleteUserUseCase)
+
