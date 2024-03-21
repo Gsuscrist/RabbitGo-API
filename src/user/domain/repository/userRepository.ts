@@ -2,7 +2,7 @@ import {User} from "../entity/user";
 import {Credentials} from "../entity/credentials";
 
 export interface UserRepository{
-
+    generateUuid(name:string):Promise<string|null>
     signUp(
         uuid:string,
         name:string,
