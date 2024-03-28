@@ -30,4 +30,29 @@ export class GetBusStopController{
             })
         }
     }
+
+    async run(req:Request,res:Response){
+        try {
+            const busStops = await this.usecase.run()
+
+            if (busStops){
+                return res.status(200).send({
+                    status:"success",
+                    data:busStops,
+                    message:"bus stop got successfully"
+                })
+            }
+            res.status(400).send({
+                status:"error",
+                data:[],
+                message:"bus stop got failed"
+            })
+        }catch (e) {
+            console.log(e)
+            res.status(417).send({
+                message:"error",
+                error:e
+            })
+        }
+    }
 }
