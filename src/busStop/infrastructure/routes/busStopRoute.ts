@@ -7,4 +7,5 @@ export const busStopRouter = express.Router()
 
 
 busStopRouter.post("/",authenticateMiddleware,createBusStopController.run.bind(createBusStopController))
+busStopRouter.get("/",authenticateMiddleware,getBusStopController.run.bind(getBusStopController))
 busStopRouter.get("/:uuid",authenticateMiddleware,getBusStopController.runById.bind(getBusStopController))
