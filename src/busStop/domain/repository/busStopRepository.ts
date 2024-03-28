@@ -4,6 +4,7 @@ import {Decimal128} from "mongodb";
 export interface BusStopRepository{
     generateUuid(name:string):Promise<string|any>
     getByUuid(uuid:string):Promise<BusStop|any>
+    getAll():Promise<BusStop[]|any>
     create(
         uuid:string,
         name:string,

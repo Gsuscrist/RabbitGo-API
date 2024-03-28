@@ -12,4 +12,12 @@ export class GetBusStopUseCase{
             console.log("usecase:\n",e)
         }
     }
+
+    async run():Promise<BusStop[]|any>{
+        try {
+            return await this.repository.getAll()
+        }catch (e){
+            console.log("usecase:\n",e)
+        }
+    }
 }
