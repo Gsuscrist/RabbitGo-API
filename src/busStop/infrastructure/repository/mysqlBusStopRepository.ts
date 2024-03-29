@@ -92,4 +92,14 @@ export class MysqlBusStopRepository implements BusStopRepository{
         }
     }
 
+    async deleteByUuid(uuid: string): Promise<void> {
+        try {
+            const date = new Date()
+            const sql ="UPDATE bus_stops SET deleted_at = ? WHERE uuid = ?";
+            const params :any[] = [date,uuid]
+            const [result]: any = await query(sql, params)
+        }catch (e) {
+            console.log("repository:\n",e)
+        }
+    }
 }

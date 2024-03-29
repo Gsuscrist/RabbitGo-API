@@ -12,4 +12,5 @@ export interface BusStopRepository{
         longitude:Decimal128
     ):Promise<BusStop|any>
     update(uuid:string,busStop:BusStop):Promise<BusStop|any>
+    deleteByUuid(uuid:string):Promise<void>
 }
