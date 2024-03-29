@@ -6,6 +6,8 @@ import { GetBusStopController } from "./controllers/getBusStopController";
 import { GetBusStopUseCase } from "busStop/application/useCase/getBusStopUseCase";
 import { UpdateBusStopUseCase } from "busStop/application/useCase/updateBusStopUseCase";
 import { UpdateBusStopController } from "./controllers/updateBusStopController";
+import { DeleteBusStopUseCase } from "busStop/application/useCase/deleteBusStopUseCase";
+import { DeleteBusStopController } from "./controllers/deleteBusStopControllers";
 
 
 export const mysqlBusStopRepository = new MysqlBusStopRepository()
@@ -19,4 +21,7 @@ export const getBusStopController = new GetBusStopController(getBusStopUseCase)
 
 export const updateBusStopUseCase = new UpdateBusStopUseCase(mysqlBusStopRepository)
 export const updateBusStopController = new UpdateBusStopController(updateBusStopUseCase)
+
+export const deleteBusStopUseCase = new DeleteBusStopUseCase(mysqlBusStopRepository)
+export const deleteBusStopController = new DeleteBusStopController(deleteBusStopUseCase)
 
