@@ -52,6 +52,29 @@ export class MysqlBusStopRepository implements BusStopRepository{
         }
     }
 
+
+    async getAll(): Promise<any> {
+        try {
+            const sql="SELECT * FROM bus_stops WHERE deleted_at IS NULL"
+            const params:any[]=[]
+            const [result]:any= await query(sql,params)
+            return result.map((busStopData:any)=>
+                new BusStop(
+                    busStopData.uuid,
+                    busStopData.name,
+                    busStopData.latitude,
+                    busStopData.longitude,
+                    busStopData.deleted_at
+                )
+            );
+
+        }catch (e) {
+            console.log("repository:\n",e)
+            return null
+        }
+    }
+
+
     async update(uuid:string, busStop:BusStop):Promise<any> {
         try {
             if (await this.getByUuid(uuid)) {
