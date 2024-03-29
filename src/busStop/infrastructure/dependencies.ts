@@ -4,6 +4,8 @@ import {GenerateUuidBusStopUseCase} from "../application/useCase/generateUuidBus
 import {CreateBusStopController} from "./controllers/createBusStopController";
 import { GetBusStopController } from "./controllers/getBusStopController";
 import { GetBusStopUseCase } from "busStop/application/useCase/getBusStopUseCase";
+import { UpdateBusStopUseCase } from "busStop/application/useCase/updateBusStopUseCase";
+import { UpdateBusStopController } from "./controllers/updateBusStopController";
 
 
 export const mysqlBusStopRepository = new MysqlBusStopRepository()
@@ -14,3 +16,7 @@ export const createBusStopController = new CreateBusStopController(createBusStop
 
 export const getBusStopUseCase = new GetBusStopUseCase(mysqlBusStopRepository)
 export const getBusStopController = new GetBusStopController(getBusStopUseCase)
+
+export const updateBusStopUseCase = new UpdateBusStopUseCase(mysqlBusStopRepository)
+export const updateBusStopController = new UpdateBusStopController(updateBusStopUseCase)
+

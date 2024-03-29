@@ -52,6 +52,7 @@ export class MysqlBusStopRepository implements BusStopRepository{
         }
     }
 
+
     async getAll(): Promise<any> {
         try {
             const sql="SELECT * FROM bus_stops WHERE deleted_at IS NULL"
@@ -73,5 +74,22 @@ export class MysqlBusStopRepository implements BusStopRepository{
         }
     }
 
+
+    async update(uuid:string, busStop:BusStop):Promise<any> {
+        try {
+            if (await this.getByUuid(uuid)) {
+                const sql = "UPDATE bus_routes SET name=?,latitude=?,longitude=? WHERE uuid=?"
+                const params:any[] = [busStop.name,busStop.latitude,busStop.longitude,uuid]
+                const [result]:any = await query(sql,params)
+                if(result){
+                    return busStop
+                }
+                return null
+            }
+        } catch (e) {
+            console.log(" * Repository : \n", e)
+            return null
+        }
+    }
 
 }

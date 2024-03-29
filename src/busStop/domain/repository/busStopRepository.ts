@@ -11,4 +11,5 @@ export interface BusStopRepository{
         latitude:Decimal128,
         longitude:Decimal128
     ):Promise<BusStop|any>
+    update(uuid:string,busStop:BusStop):Promise<BusStop|any>
 }
