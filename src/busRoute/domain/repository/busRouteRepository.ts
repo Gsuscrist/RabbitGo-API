@@ -1,4 +1,4 @@
-import {BusRoute} from "../domain/entity/busRoute";
+import {BusRoute} from "../entity/busRoute";
 
 export interface BusRouteRepository {
     generateUuid(name:string):Promise<string |any>
@@ -10,7 +10,7 @@ export interface BusRouteRepository {
         endTime: string,
         busStopId:string
     ):Promise<BusRoute|any>
-   
+
 
 
 }
