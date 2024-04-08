@@ -110,4 +110,15 @@ export class MysqlBusRouteRepository implements BusRouteRepository{
         }
     }
 
+    async updateBusRoute(uuid: string, busRoute: BusRoute): Promise<any> {
+        try {
+            const sql = "UPDATE bus_routes SET name = ?, price=?, start_time=?, end_time=?, bus_stop_id=? WHERE uuid=?"
+            const params:any[] = [busRoute.name,busRoute.price,busRoute.startTime,busRoute.endTime,busRoute.busStopId,uuid]
+            const [result]:any = await query(sql,params)
+            return busRoute
+        }catch (e) {
+            console.log("repository:\n", e)
+        }
+    }
+
 }
