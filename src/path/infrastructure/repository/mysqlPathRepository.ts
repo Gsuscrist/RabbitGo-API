@@ -98,7 +98,7 @@ export class MysqlPathRepository implements PathRepository{
             const params :any[] = [date,uuid]
             const [result]: any = await query(sql, params)
         }catch (e) {
-            console.log(" * Repository:\n",e)
+            console.log("repository:\n",e)
         }
     }
 }
