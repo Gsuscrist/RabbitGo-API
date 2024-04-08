@@ -87,4 +87,27 @@ export class MysqlBusRouteRepository implements BusRouteRepository{
         }
     }
 
+    async getByBusStop(uuid: string): Promise<any> {
+        try {
+            const sql = "SELECT * FROM bus_routes WHERE bus_stop_id = ? AND deleted_at IS NULL"
+            const params:any[]=[uuid]
+            const [result]:any = await query(sql,params)
+            return result.map((busRouteData: any) =>
+                new BusRoute(
+                    busRouteData.uuid,
+                    busRouteData.name,
+                    busRouteData.price,
+                    busRouteData.start_time,
+                    busRouteData.end_time,
+                    busRouteData.bus_stop_id,
+                    busRouteData.deleted_at
+                )
+            );
+
+        }catch (e) {
+            console.log("repository:\n", e)
+            return null
+        }
+    }
+
 }

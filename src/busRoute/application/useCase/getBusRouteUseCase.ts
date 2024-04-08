@@ -30,4 +30,12 @@ export class GetBusRouteUseCase{
         }
     }
 
+    async runByBusStop(uuid:string):Promise<BusRoute[]|any>{
+        try {
+            return await this.repository.getByBusStop(uuid)
+        }catch (e) {
+            console.log("usecase\n:",e)
+        }
+    }
+
 }
