@@ -14,31 +14,4 @@ export class GetBusRouteUseCase{
         }
     }
 
-
-    async runByName(name:string):Promise<BusRoute|any>{
-        try {
-            return await this.repository.getByName(name)
-        }catch (e) {
-            console.log("UseCase: \n",e)
-        }
-    }
-
-    async runByTime(time:string):Promise<BusRoute|any>{
-        try {
-            return await this.repository.getByTime(time)
-        }catch (e){
-            console.log("Usecase \n", e)
-        }
-    }
-
-    async runByBusStop(uuid:string):Promise<BusRoute[]|any>{
-        try {
-            return await this.repository.getByBusStop(uuid)
-        }catch (e) {
-            console.log("usecase\n:",e)
-        }
-    }
-
-
-
 }
