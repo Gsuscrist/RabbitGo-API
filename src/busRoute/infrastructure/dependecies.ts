@@ -4,6 +4,8 @@ import {GenerateUuidBusRouteUseCase} from "../application/useCase/generateUuidBu
 import {CreateBusRouteController} from "./controllers/createBusRouteController";
 import { GetBusRouteUseCase } from "busRoute/application/useCase/getBusRouteUseCase";
 import { GetBusRouteController } from "./controllers/getBusRouteController";
+import { UpdateBusRouteUseCase } from "busRoute/application/useCase/updateBusRouteUseCase";
+import { UpdateBusRouteController } from "./controllers/updateBusRouteController";
 
 export const mysqlBusRouteRepository = new MysqlBusRouteRepository()
 
@@ -13,3 +15,6 @@ export const createBusRouteController = new CreateBusRouteController(createBusRo
 
 export const getBusRouteUseCase = new GetBusRouteUseCase(mysqlBusRouteRepository)
 export const getBusRouteController = new GetBusRouteController(getBusRouteUseCase)
+
+export const updateBusRouteUseCase = new UpdateBusRouteUseCase(mysqlBusRouteRepository)
+export const updateBusRouteController = new UpdateBusRouteController(updateBusRouteUseCase)
