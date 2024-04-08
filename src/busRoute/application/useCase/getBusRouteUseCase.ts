@@ -14,4 +14,12 @@ export class GetBusRouteUseCase{
         }
     }
 
+    async runByName(name:string):Promise<BusRoute|any>{
+        try {
+            return await this.repository.getByName(name)
+        }catch (e) {
+            console.log("UseCase: \n",e)
+        }
+    }
+
 }
