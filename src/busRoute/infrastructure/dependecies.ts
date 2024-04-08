@@ -6,6 +6,8 @@ import { GetBusRouteUseCase } from "busRoute/application/useCase/getBusRouteUseC
 import { GetBusRouteController } from "./controllers/getBusRouteController";
 import { UpdateBusRouteUseCase } from "busRoute/application/useCase/updateBusRouteUseCase";
 import { UpdateBusRouteController } from "./controllers/updateBusRouteController";
+import { DeleteBusRouteUseCase } from "busRoute/application/useCase/deleteBusRouteUseCase";
+import { DeleteBusRouteCotroller } from "./controllers/deleteBusRouteCotroller";
 
 export const mysqlBusRouteRepository = new MysqlBusRouteRepository()
 
@@ -18,3 +20,6 @@ export const getBusRouteController = new GetBusRouteController(getBusRouteUseCas
 
 export const updateBusRouteUseCase = new UpdateBusRouteUseCase(mysqlBusRouteRepository)
 export const updateBusRouteController = new UpdateBusRouteController(updateBusRouteUseCase)
+
+export const deleteBusRouteUseCase = new DeleteBusRouteUseCase(mysqlBusRouteRepository)
+export const deleteBusRouteController = new DeleteBusRouteCotroller(deleteBusRouteUseCase)
