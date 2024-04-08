@@ -1,5 +1,5 @@
 import express from "express";
-import {createPathController, getPathController, updatePathController} from "../dependencies";
+import {createPathController, deletePathController, getPathController, updatePathController} from "../dependencies";
 import {authenticateMiddleware} from "../../../middleware/authenticator";
 
 export const pathRouter = express.Router()
@@ -10,3 +10,5 @@ pathRouter.get("/:uuid",authenticateMiddleware,getPathController.runByPathId.bin
 pathRouter.get("/route/:uuid",authenticateMiddleware,getPathController.runByRouteId.bind(getPathController))
 
 pathRouter.put("/:uuid",authenticateMiddleware,updatePathController.run.bind(updatePathController))
+
+pathRouter.delete("/:uuid",authenticateMiddleware,deletePathController.run.bind(deletePathController))
