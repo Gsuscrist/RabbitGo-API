@@ -9,4 +9,6 @@ export interface PathRepository{
         path:string,
         busRouteId:string
     ):Promise<Path|any>
+    getPathById(uuid:string):Promise<Path|any>
+    getPathByBus(uuid:string):Promise<Path|any>
 }
