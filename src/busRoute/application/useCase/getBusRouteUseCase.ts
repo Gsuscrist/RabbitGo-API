@@ -22,4 +22,12 @@ export class GetBusRouteUseCase{
         }
     }
 
+    async runByTime(time:string):Promise<BusRoute|any>{
+        try {
+            return await this.repository.getByTime(time)
+        }catch (e){
+            console.log("Usecase \n", e)
+        }
+    }
+
 }

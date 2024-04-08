@@ -65,4 +65,26 @@ export class MysqlBusRouteRepository implements BusRouteRepository{
         }
     }
 
+    async getByTime(time:string): Promise<any> {
+        try {
+            const sql = "SELECT * FROM bus_routes WHERE STR_TO_DATE(?, '%H:%i') BETWEEN start_time AND end_time AND deleted_at IS NULL";
+            const params = [time];
+            const [result]: any = await query(sql, params);
+            console.log(result);
+            return result.map((busRouteData: any) =>
+                new BusRoute(
+                    busRouteData.uuid,
+                    busRouteData.name,
+                    busRouteData.price,
+                    busRouteData.start_time,
+                    busRouteData.end_time,
+                    busRouteData.bus_stop_id,
+                    busRouteData.deleted_at
+                )
+            );
+        } catch (e) {
+            console.log("repository:\n", e);
+        }
+    }
+
 }
