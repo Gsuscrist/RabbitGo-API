@@ -55,4 +55,24 @@ export class MysqlPathRepository implements PathRepository{
         }
     }
     
+    async getPathByBus(uuid: string): Promise<any> {
+        try {
+            const sql="SELECT * FROM paths WHERE bus_route_id=? AND deleted_at IS NULL"
+            const params:any[]=[uuid]
+            const [result]:any=await query(sql,params)
+            if (result){
+                return result.map((path:any)=>
+                    new Path(
+                        path.uuid,
+                        path.path,
+                        path.bus_route_id,
+                        path.deleted_at
+                    )
+                );
+            }
+        }catch (e) {
+            console.log("* Repository: \n",e)
+            return null
+        }
+    }
 }
