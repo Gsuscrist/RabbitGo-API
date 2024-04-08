@@ -23,7 +23,7 @@ export class MysqlPathRepository implements PathRepository{
             console.log(e);
         }
     }
-    
+
     async createPath(uuid: string, path: string, busRouteId: string): Promise<any> {
         try {
             const startSql = "SELECT * FROM bus_routes WHERE uuid = ? AND deleted_at IS NULL"
@@ -88,6 +88,17 @@ export class MysqlPathRepository implements PathRepository{
         }catch (e){
             console.log(" * Repository : \n",e)
             return null
+        }
+    }
+
+    async deleteById(uuid: string): Promise<void> {
+        try {
+            const date = new Date()
+            const sql ="UPDATE paths SET deleted_at = ? WHERE uuid = ?";
+            const params :any[] = [date,uuid]
+            const [result]: any = await query(sql, params)
+        }catch (e) {
+            console.log(" * Repository:\n",e)
         }
     }
 }
