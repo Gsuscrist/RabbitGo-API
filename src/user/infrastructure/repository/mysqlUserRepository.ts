@@ -107,10 +107,10 @@ export class MysqlUserRepository implements UserRepository{
         try{
             const sql = "UPDATE users SET name = ?, lastname = ?, email = ?, password = ? WHERE uuid = ?"
             const params:any[] = [
-                user.name, 
-                user.lastname, 
+                user.name,
+                user.lastname,
                 user.credentials.email,
-                user.credentials.password, 
+                user.credentials.password,
                 uuid
             ];
             await query(sql,params);
