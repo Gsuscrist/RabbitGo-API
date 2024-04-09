@@ -12,4 +12,5 @@ export interface PathRepository{
     getPathById(uuid:string):Promise<Path|any>
     getPathByBus(uuid:string):Promise<Path|any>
     update(uuid:string,path:Path):Promise<Path|any>
+    deleteById(uuid:string):Promise<void>
 }
