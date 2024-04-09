@@ -6,6 +6,7 @@ export interface BusRouteRepository {
     getByName(name:string):Promise<BusRoute|any>
     getByTime(time:string):Promise<BusRoute|any>
     getByBusStop(busStopId:string):Promise<BusRoute[]|any>
+    deleteBusRoute(uuid:string):Promise<void>
     createBusRoute(
         uuid:string,
         name: string,
