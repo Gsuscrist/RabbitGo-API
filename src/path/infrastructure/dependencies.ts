@@ -4,6 +4,8 @@ import {GenerateUuidPathUseCase} from "../application/useCases/generateUuidPathU
 import {CreatePathController} from "./controllers/CreatePathController";
 import { GetPathUseCase } from "path/application/useCases/getPathUseCase";
 import { GetPathController } from "./controllers/getPathController";
+import { UpdatePathUseCase } from "path/application/useCases/updatePathUseCase";
+import { UpdatePathController } from "./controllers/updatePathController";
 
 export const mysqlPathRepository = new MysqlPathRepository()
 
@@ -13,3 +15,5 @@ export const generateUuid = new GenerateUuidPathUseCase(mysqlPathRepository)
 export const createPathController = new CreatePathController(createPathUseCase,generateUuid)
 export const getPathUseCase = new GetPathUseCase(mysqlPathRepository)
 export const getPathController = new GetPathController(getPathUseCase)
+export const updatePathUseCase = new UpdatePathUseCase(mysqlPathRepository)
+export const updatePathController = new UpdatePathController(updatePathUseCase)

@@ -23,6 +23,7 @@ export class MysqlPathRepository implements PathRepository{
             console.log(e);
         }
     }
+    
     async createPath(uuid: string, path: string, busRouteId: string): Promise<any> {
         try {
             const startSql = "SELECT * FROM bus_routes WHERE uuid = ? AND deleted_at IS NULL"
@@ -72,6 +73,20 @@ export class MysqlPathRepository implements PathRepository{
             }
         }catch (e) {
             console.log("* Repository: \n",e)
+            return null
+        }
+    }
+
+    async update(uuid: string, path: Path): Promise<any> {
+        try {
+            const sql = "UPDATE paths SET path =?, busRouteId=? WHERE uuid=? AND deleted_at IS NULL"
+            const params:any[]=[path.path,path.busRouteId,uuid]
+            const [result]:any=await query(sql,params)
+            if (result){
+                return path
+            }
+        }catch (e){
+            console.log(" * Repository : \n",e)
             return null
         }
     }
