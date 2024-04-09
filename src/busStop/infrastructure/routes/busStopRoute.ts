@@ -1,7 +1,7 @@
 import express from "express";
 import {authenticateMiddleware} from "../../../middleware/authenticator";
-import {createBusStopController, deleteBusStopController, getBusStopController} from "../dependencies";
-import {createBusStopController, updateBusStopController} from "../dependencies";
+import {createBusStopController, deleteBusStopController, getBusStopController, updateBusStopController} from "../dependencies";
+
 
 
 

@@ -53,6 +53,61 @@ export class MysqlBusRouteRepository implements BusRouteRepository{
         }
     }
 
+    async getByName(name: string): Promise<any> {
+        try {
+            const sql = "SELECT * FROM bus_routes WHERE name = ? AND deleted_at IS NULL"
+            const params:any[]=[name]
+            const [result]:any = await query(sql,params)
+            const busRoute = result[0]
+            return new BusRoute(busRoute.uuid, busRoute.name, busRoute.price, busRoute.start_time, busRoute.end_time,busRoute.bus_stop_id, busRoute.deleted_at)
+        }catch (e) {
+            console.log("repository:\n", e)
+        }
+    }
 
+    async getByTime(time:string): Promise<any> {
+        try {
+            const sql = "SELECT * FROM bus_routes WHERE STR_TO_DATE(?, '%H:%i') BETWEEN start_time AND end_time AND deleted_at IS NULL";
+            const params = [time];
+            const [result]: any = await query(sql, params);
+            console.log(result);
+            return result.map((busRouteData: any) =>
+                new BusRoute(
+                    busRouteData.uuid,
+                    busRouteData.name,
+                    busRouteData.price,
+                    busRouteData.start_time,
+                    busRouteData.end_time,
+                    busRouteData.bus_stop_id,
+                    busRouteData.deleted_at
+                )
+            );
+        } catch (e) {
+            console.log("repository:\n", e);
+        }
+    }
+
+    async getByBusStop(uuid: string): Promise<any> {
+        try {
+            const sql = "SELECT * FROM bus_routes WHERE bus_stop_id = ? AND deleted_at IS NULL"
+            const params:any[]=[uuid]
+            const [result]:any = await query(sql,params)
+            return result.map((busRouteData: any) =>
+                new BusRoute(
+                    busRouteData.uuid,
+                    busRouteData.name,
+                    busRouteData.price,
+                    busRouteData.start_time,
+                    busRouteData.end_time,
+                    busRouteData.bus_stop_id,
+                    busRouteData.deleted_at
+                )
+            );
+
+        }catch (e) {
+            console.log("repository:\n", e)
+            return null
+        }
+    }
 
 }
