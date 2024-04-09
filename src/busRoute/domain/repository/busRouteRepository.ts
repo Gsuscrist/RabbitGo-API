@@ -14,7 +14,7 @@ export interface BusRouteRepository {
         endTime: string,
         busStopId:string
     ):Promise<BusRoute|any>
-
+    updateBusRoute(uuid:string,busRoute:BusRoute):Promise<BusRoute|any>
 
 
 }
